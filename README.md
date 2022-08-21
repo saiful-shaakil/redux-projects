@@ -10,7 +10,7 @@ Please follow the below instructions to run any branch in your machine:
    ```sh
    cd redux-projects
    ```
-3. Checkout/switch to branch 1.2
+3. Checkout/switch to branch name
    ```sh
    git checkout <branch-name>
    ```
