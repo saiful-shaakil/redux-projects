@@ -26,12 +26,4 @@ Please follow the below instructions to run any branch in your machine:
    ```sh
    npm start
    ```
-6. Your app should be available in http://localhost:30004. Install dependencies
-   ```sh
-   npm i
-   ```
-5. Install VS Code [Live Server plugin](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) & start the server.
-   ```sh
-   npm start
-   ```
 6. Your app should be available in http://localhost:3000
