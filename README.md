@@ -1,1 +1,1 @@
-The main branch of my redux projects
+This is the first redux project using react-redux.
