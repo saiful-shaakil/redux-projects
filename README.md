@@ -1,4 +1,4 @@
-**1st project of my redux projects repository**
+## Counter Application
 
 Please follow the below instructions to run this branch in your machine:
 
