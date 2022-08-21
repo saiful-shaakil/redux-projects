@@ -12,7 +12,7 @@ const initialState = [
     id: 1,
     text: "Solve 10 math problems.",
     completed: true,
-    color: "yellow",
+    color: "green",
   },
   {
     id: 2,
