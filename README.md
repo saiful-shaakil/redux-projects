@@ -18,7 +18,7 @@ Please follow the below instructions to run any branch in your machine:
    ```sh
    git checkout <branch-name>
    ```
-  4. Install dependencies
+4. Install dependencies
    ```sh
    npm i
    ```
