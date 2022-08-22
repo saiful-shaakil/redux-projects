@@ -6,6 +6,10 @@ import {
   TOGGLED,
   COLORSELECT,
 } from "./actionTypes";
+const nextTodoId = (todos) => {
+  const maxId = todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1);
+  return maxId + 1;
+};
 
 const initialState = [
   {
@@ -28,7 +32,7 @@ export const todoReducer = (state = initialState, action) => {
       return [
         ...state,
         {
-          id: state.length + 1,
+          id: nextTodoId(state),
           text: action.text,
           completed: false,
         },
