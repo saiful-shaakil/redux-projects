@@ -1,5 +1,7 @@
 ## Todo Application
 
+[Go to Live Site](https://simple-todo-app-redux.netlify.app/)
+
 Please follow the below instructions to run this branch in your machine:
 
 1. Clone this repository -

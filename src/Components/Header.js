@@ -9,8 +9,12 @@ export default function Header() {
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNew(input));
-    setInput("");
+    if (input !== "") {
+      dispatch(addNew(input));
+      setInput("");
+    } else {
+      window.alert("Please type your todo first.");
+    }
   };
   return (
     <div>
