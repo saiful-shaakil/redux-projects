@@ -3,14 +3,15 @@ import { useDispatch } from "react-redux";
 import tick from "../images/double-tick.png";
 import note from "../images/notes.png";
 import plus from "../images/plus.png";
-import { addNew, allCompleted, clearCompleted } from "../Redux/todos/actions";
+import { allCompleted, clearCompleted } from "../Redux/todos/actions";
+import addTodo from "../Redux/todos/thunk/addTodo";
 export default function Header() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input !== "") {
-      dispatch(addNew(input));
+      dispatch(addTodo(input));
       setInput("");
     } else {
       window.alert("Please type your todo first.");

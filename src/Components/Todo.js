@@ -1,31 +1,36 @@
-import React from "react";
 import { useDispatch } from "react-redux";
-import cross from "../images/cancel.png";
-import { colorSelect, toggled, deleted } from "../Redux/todos/actions";
+import cancelImage from "../images/cancel.png";
+import { deleted } from "../Redux/todos/actions";
+import updateTodoStatus from "../Redux/todos/thunk/updateTodoStatus";
 
 export default function Todo({ todo }) {
-  const { text, id, completed, color } = todo;
   const dispatch = useDispatch();
-  const handleToogle = (todId) => {
-    dispatch(toggled(todId));
+
+  const { text, id, completed, color } = todo;
+
+  const handleStatusChange = (todoId) => {
+    dispatch(updateTodoStatus(todoId, completed));
   };
-  const handleColor = (todoId, color) => {
-    dispatch(colorSelect(todoId, color));
+
+  const handleColorChange = (todoId, color) => {
+    // dispatch(updateColor(todoId, color));
   };
+
   const handleDelete = (todoId) => {
     dispatch(deleted(todoId));
   };
+
   return (
     <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
       <div
-        className={`rounded-full bg-white border-2 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 ${
+        className={`relative rounded-full bg-white border-2 border-gray-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 ${
           completed && "border-green-500 focus-within:border-green-500"
         }`}
       >
         <input
           type="checkbox"
           checked={completed}
-          onChange={() => handleToogle(id)}
+          onChange={() => handleStatusChange(id)}
           className="opacity-0 absolute rounded-full"
         />
         {completed && (
@@ -43,31 +48,31 @@ export default function Todo({ todo }) {
       </div>
 
       <div
-        className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer hover:bg-green-500 border-green-500  ${
-          color === "green" && " bg-green-500"
+        className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer hover:bg-green-500 border-green-500 ${
+          color === "green" && "bg-green-500"
         }`}
-        onClick={() => handleColor(id, "green")}
+        onClick={() => handleColorChange(id, "green")}
       ></div>
 
       <div
-        className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer hover:bg-yellow-500 border-yellow-500  ${
-          color === "yellow" && " bg-yellow-500"
+        className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer hover:bg-yellow-500 border-yellow-500 ${
+          color === "yellow" && "bg-yellow-500"
         }`}
-        onClick={() => handleColor(id, "yellow")}
+        onClick={() => handleColorChange(id, "yellow")}
       ></div>
 
       <div
-        className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer hover:bg-red-500 border-red-500  ${
-          color === "red" && " bg-red-500"
+        className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer hover:bg-red-500 border-red-500 ${
+          color === "red" && "bg-red-500"
         }`}
-        onClick={() => handleColor(id, "red")}
+        onClick={() => handleColorChange(id, "red")}
       ></div>
 
       <img
-        onClick={() => handleDelete(id)}
-        src={cross}
+        src={cancelImage}
         className="flex-shrink-0 w-4 h-4 ml-2 cursor-pointer"
         alt="Cancel"
+        onClick={() => handleDelete(id)}
       />
     </div>
   );

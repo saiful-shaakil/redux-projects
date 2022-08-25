@@ -1,3 +1,4 @@
+export const LOADED = "todos/loaded";
 export const ADDNEW = "todos/addNew";
 export const TOGGLED = "todos/toggled";
 export const COLORSELECT = "todos/colorSelect";

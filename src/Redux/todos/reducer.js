@@ -5,28 +5,20 @@ import {
   ALLCOMPLETED,
   TOGGLED,
   COLORSELECT,
+  LOADED,
 } from "./actionTypes";
 const nextTodoId = (todos) => {
   const maxId = todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1);
   return maxId + 1;
 };
 
-const initialState = [
-  {
-    id: 1,
-    text: "Solve 10 math problems.",
-    completed: true,
-  },
-  {
-    id: 2,
-    text: "Solve 10 physics questions.",
-    completed: false,
-    color: "red",
-  },
-];
+const initialState = [];
 
 export const todoReducer = (state = initialState, action) => {
   switch (action.type) {
+    // to load todos from db
+    case LOADED:
+      return action.payload;
     // to add new todo
     case ADDNEW:
       return [
