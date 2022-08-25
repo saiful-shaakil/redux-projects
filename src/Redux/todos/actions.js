@@ -6,12 +6,22 @@ import {
   COLORSELECT,
   TOGGLED,
   LOADED,
+  EDIT,
 } from "./actionTypes";
 
 export const loaded = (todos) => {
   return {
     type: LOADED,
     payload: todos,
+  };
+};
+export const editTodo = (todoID, todoText) => {
+  return {
+    type: EDIT,
+    payload: {
+      todoID,
+      todoText,
+    },
   };
 };
 export const addNew = (todoText) => {

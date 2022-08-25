@@ -6,6 +6,7 @@ import {
   TOGGLED,
   COLORSELECT,
   LOADED,
+  EDIT,
 } from "./actionTypes";
 const nextTodoId = (todos) => {
   const maxId = todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1);
@@ -38,6 +39,18 @@ export const todoReducer = (state = initialState, action) => {
         return {
           ...todo,
           completed: !todo.completed,
+        };
+      });
+    // to update todo text
+    case EDIT:
+      const { todoID, todoText } = action.payload;
+      return state.map((todo) => {
+        if (todo.id !== todoID) {
+          return todo;
+        }
+        return {
+          ...todo,
+          text: todoText,
         };
       });
     // to select the color of the todo which indicated the todo is completed or not
