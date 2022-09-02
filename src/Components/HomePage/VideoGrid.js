@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { videosAsync } from "../../Redux/features/videos/videoSlice";
+import { fetchVideos } from "../../Redux/features/videos/videosSlice";
 import Video from "./Video";
 export default function VideoGrid() {
   const dispatch = useDispatch();
-  const { videos, loading, isError, error } = useSelector(
-    (state) => state.videos
-  );
+  const { videos, loading, error } = useSelector((state) => state.videos);
   useEffect(() => {
-    dispatch(videosAsync());
+    dispatch(fetchVideos());
   }, [dispatch]);
   // conditon
   if (loading)
