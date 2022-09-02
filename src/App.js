@@ -1,16 +1,17 @@
+import { Routes, Route } from "react-router-dom";
 import Footer from "./Components/Footer";
+import HomePage from "./Components/HomePage/HomePage";
 import Navbar from "./Components/Navbar";
-import Pagination from "./Components/Pagination";
-import Tags from "./Components/Tags";
-import VideoGrid from "./Components/VideoGrid";
+import VideoPage from "./Components/VideoPage/VideoPage";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Tags />
-      <VideoGrid />
-      <Pagination />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/videos/:videoId" element={<VideoPage />} />
+      </Routes>
       <Footer />
     </div>
   );
