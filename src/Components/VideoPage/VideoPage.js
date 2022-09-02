@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchVideo } from "../../Redux/features/video/videoSlice";
 import like from "../../assets/like.svg";
 import dislike from "../../assets/unlike.svg";
+import RelatedVideos from "./RelatedVideos";
 export default function VideoPage() {
   const { videoId } = useParams();
   const dispatch = useDispatch();
@@ -19,11 +20,11 @@ export default function VideoPage() {
     likes,
     link,
     unlikes,
+    tags,
   } = video;
   useEffect(() => {
     dispatch(fetchVideo(videoId));
   }, [videoId, dispatch]);
-  console.log(videoId, video);
   return (
     <section className="pt-6 pb-20">
       <div className="mx-auto max-w-7xl px-2 pb-20 min-h-[400px]">
@@ -78,40 +79,7 @@ export default function VideoPage() {
           </div>
 
           {/* <!-- related videos --> */}
-          <div className="col-span-full lg:col-auto max-h-[570px] overflow-y-auto">
-            {/* <!-- single related video --> */}
-            <div className="w-full flex flex-row gap-2 mb-4">
-              <div className="relative w-[168px] h-[94px] flex-none duration-300 hover:scale-[1.03]">
-                <Link to="/videos/1">
-                  <img
-                    src="https://i3.ytimg.com/vi/6O4s7v28nlw/maxresdefault.jpg"
-                    className="object-cover"
-                    alt="Some video title"
-                  />
-                </Link>
-                <p className="absolute right-2 bottom-2 bg-gray-900 text-gray-100 text-xs px-1 py">
-                  12:10
-                </p>
-              </div>
-
-              <div className="flex flex-col w-full">
-                <Link to="/videos/3">
-                  <p className="text-slate-900 text-sm font-semibold">
-                    Some video title
-                  </p>
-                </Link>
-                <Link
-                  className="text-gray-400 text-xs mt-2 hover:text-gray-600"
-                  to=""
-                >
-                  Learn with Sumit
-                </Link>
-                <p className="text-gray-400 text-xs mt-1">
-                  100K views . 23 Oct 2022
-                </p>
-              </div>
-            </div>
-          </div>
+          <RelatedVideos tags={tags} currentVideoId={id} />
         </div>
       </div>
     </section>
