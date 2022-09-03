@@ -1,14 +1,24 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRelatedVideos } from "../../Redux/features/relatedVideos/relatedVideosSlice";
+import { setAuthor } from "../../Redux/features/filter/filterSlice";
 export default function RelatedVideos({ currentVideoId, tags }) {
   const dispatch = useDispatch();
-  const { relatedVideos, error } = useSelector((state) => state.relatedVideos);
+  const { relatedVideos } = useSelector((state) => state.relatedVideos);
+  const match = useMatch("/");
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchRelatedVideos(tags, currentVideoId));
   }, [currentVideoId, tags, dispatch]);
   //   console.log(relatedVideos);
+
+  const handleFilterByAuthorName = (author) => {
+    dispatch(setAuthor(author));
+    if (match === null) {
+      navigate("/");
+    }
+  };
   return (
     <div className="col-span-full lg:col-auto max-h-[570px] overflow-y-auto">
       {/* <!-- single related video --> */}
@@ -34,8 +44,9 @@ export default function RelatedVideos({ currentVideoId, tags }) {
               </p>
             </Link>
             <Link
+              onClick={() => handleFilterByAuthorName(video.author)}
               className="text-gray-400 text-xs mt-2 hover:text-gray-600"
-              to=""
+              to="/"
             >
               {video.author}
             </Link>

@@ -1,7 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useMatch, useNavigate } from "react-router-dom";
+import { setAuthor } from "../../Redux/features/filter/filterSlice";
 
 export default function Video({ video }) {
+  const dispatch = useDispatch();
+  const match = useMatch("/");
+  const navigate = useNavigate();
+
+  const handleFilterByAuthorName = (author) => {
+    dispatch(setAuthor(author));
+
+    // if user is not in home page, redirect to home page
+    if (!match) {
+      navigate("/");
+    }
+  };
   const {
     id,
     title,
@@ -30,7 +45,7 @@ export default function Video({ video }) {
           </Link>
 
           <p className="absolute right-2 bottom-2 bg-gray-900 text-gray-100 text-xs px-1 py">
-            12:10
+            {duration}
           </p>
         </div>
 
@@ -48,6 +63,7 @@ export default function Video({ video }) {
               <p className="text-slate-900 text-sm font-semibold">{title}</p>
             </Link>
             <Link
+              onClick={() => handleFilterByAuthorName(author)}
               to=""
               className="text-gray-400 text-xs mt-2 hover:text-gray-600"
               href="#"

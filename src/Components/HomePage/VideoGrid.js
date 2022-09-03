@@ -5,10 +5,12 @@ import Video from "./Video";
 export default function VideoGrid() {
   const dispatch = useDispatch();
   const { videos, loading, error } = useSelector((state) => state.videos);
-  const { tags, search } = useSelector((state) => state.filter);
+  const { tags, search, authorName, start, end } = useSelector(
+    (state) => state.filter
+  );
   useEffect(() => {
-    dispatch(fetchVideos({ tags, search }));
-  }, [dispatch, tags, search]);
+    dispatch(fetchVideos({ tags, search, authorName, start, end }));
+  }, [dispatch, tags, search, authorName, start, end]);
   // conditon
   if (loading)
     return (
@@ -16,6 +18,7 @@ export default function VideoGrid() {
         <p>Loding</p>
       </div>
     );
+
   return (
     <section className="pt-12">
       <section className="pt-12">

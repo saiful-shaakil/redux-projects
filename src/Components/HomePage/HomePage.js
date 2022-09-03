@@ -1,4 +1,5 @@
 import React from "react";
+import Reset from "../Reset";
 import Pagination from "./Pagination";
 import Tags from "./Tags";
 import VideoGrid from "./VideoGrid";
@@ -6,7 +7,10 @@ import VideoGrid from "./VideoGrid";
 export default function HomePage() {
   return (
     <div>
-      <Tags />
+      <div className="flex justify-between items-center mx-auto w-[80%]">
+        <Tags />
+        <Reset />
+      </div>
       <VideoGrid />
       <Pagination />
     </div>
