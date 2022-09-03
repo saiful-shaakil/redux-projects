@@ -5,6 +5,7 @@ const middlewares = jsonServer.defaults();
 const port = process.env.PORT || 9000;
 
 // Bind the router db to the app
+
 server.db = router.db;
 
 server.use(middlewares);
