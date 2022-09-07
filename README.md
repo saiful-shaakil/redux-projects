@@ -1,6 +1,6 @@
 ## Video Application
 
-[Go to Live Site]()
+[Go to Live Site](https://video-app-lws.netlify.app/)
 
 Please follow the below instructions to run this branch in your machine:
 
