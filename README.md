@@ -3,6 +3,8 @@
 ** Available Branches ** 
 1. counter-app
 2. todo-app
+3. video-app
+4. expense-tracker
 
 Please follow the below instructions to run any branch in your machine:
 
