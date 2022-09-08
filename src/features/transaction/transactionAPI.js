@@ -1,16 +1,23 @@
 import axios from "../../utils/axios";
 
 export const getTransactions = async (search, start, end, type) => {
-  let queryString = `_start=${start}&_end=${end}`;
+  let queryString = `_start=${start}&_end=${end}&_sort=id&_order=desc`;
   if (search !== "") {
     queryString += `&q=${search}`;
   }
-  if (type !== "all") {
-    queryString += `&type_like=${type}`;
+  if (type !== "all" || undefined) {
+    if (type !== "all") {
+      queryString += `&type_like=${type}`;
+    }
+    if (type === undefined) {
+      queryString = `_start=${start}&_end=${end}&_sort=id&_order=desc`;
+    }
   }
-  console.log(queryString);
-  const response = await axios.get(`/transactions/?${queryString}`);
-  console.log(response.data);
+  const response = await axios.get(`/transactions?${queryString}`);
+  return response.data;
+};
+export const getAllTransactions = async () => {
+  const response = await axios.get(`/transactions`);
   return response.data;
 };
 export const addTransaction = async (data) => {

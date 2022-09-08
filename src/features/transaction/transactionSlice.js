@@ -3,15 +3,18 @@ import {
   addTransaction,
   deleteTransaction,
   editTransaction,
+  getAllTransactions,
   getTransactions,
 } from "./transactionAPI";
 
 const initialState = {
   transactions: [],
+  currentBalance: 0,
   isLoading: false,
   isError: false,
   error: "",
   editing: {},
+  update: false,
 };
 
 // asyns thunks
@@ -19,6 +22,14 @@ export const fetchTransactions = createAsyncThunk(
   "transaction/fetchTransactions",
   async ({ search, start, end, type }) => {
     const transactions = await getTransactions(search, start, end, type);
+    return transactions;
+  }
+);
+// for balance status
+export const fetchTransactionsAll = createAsyncThunk(
+  "transaction/fetchTransactionsAll",
+  async () => {
+    const transactions = await getAllTransactions();
     return transactions;
   }
 );
@@ -72,6 +83,30 @@ const transactionSlice = createSlice({
         state.transactions = [];
         state.error = action.error?.message;
       })
+      .addCase(fetchTransactionsAll.pending, (state, action) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(fetchTransactionsAll.fulfilled, (state, action) => {
+        let total = 0;
+        state.isLoading = false;
+        state.isError = false;
+        action.payload.map((each) => {
+          if (each.type === "income") {
+            return (total += each.amount);
+          } else {
+            return (total -= each.amount);
+          }
+        });
+        state.currentBalance = total;
+      })
+      .addCase(fetchTransactionsAll.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.currentBalance = 0;
+        state.transactions = [];
+        state.error = action.error?.message;
+      })
       .addCase(createTransaction.pending, (state, action) => {
         state.isError = false;
         state.isLoading = true;
@@ -79,6 +114,7 @@ const transactionSlice = createSlice({
       .addCase(createTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
+        state.update = !state.update;
         state.transactions.push(action.payload);
       })
       .addCase(createTransaction.rejected, (state, action) => {
@@ -110,6 +146,7 @@ const transactionSlice = createSlice({
       .addCase(removeTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
+        state.update = !state.update;
         state.transactions = state.transactions.filter(
           (t) => t.id !== action?.meta?.arg
         );

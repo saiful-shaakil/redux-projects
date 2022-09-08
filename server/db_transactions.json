@@ -31,12 +31,6 @@
       "id": 10
     },
     {
-      "name": "Logi Mouse",
-      "type": "expense",
-      "amount": 1299,
-      "id": 11
-    },
-    {
       "name": "Logi Keyboard",
       "type": "expense",
       "amount": 2499,
@@ -71,6 +65,72 @@
       "type": "expense",
       "amount": 3400,
       "id": 17
+    },
+    {
+      "name": "income",
+      "type": "income",
+      "amount": 500,
+      "id": 23
+    },
+    {
+      "name": "From abbu",
+      "type": "income",
+      "amount": 5000,
+      "id": 24
+    },
+    {
+      "name": "Logi Mouse",
+      "type": "expense",
+      "amount": 1200,
+      "id": 25
+    },
+    {
+      "name": "From Twitter",
+      "type": "income",
+      "amount": 600000,
+      "id": 26
+    },
+    {
+      "name": "Dell Laptop",
+      "amount": 30000,
+      "type": "expense",
+      "id": 27
+    },
+    {
+      "name": "Hp Laptop",
+      "type": "expense",
+      "amount": 90000,
+      "id": 28
+    },
+    {
+      "name": "Mac Book",
+      "type": "expense",
+      "amount": 200000,
+      "id": 29
+    },
+    {
+      "name": "Ipad",
+      "type": "expense",
+      "amount": 50000,
+      "id": 30
+    },
+    {
+      "name": "Apple Watch",
+      "type": "expense",
+      "amount": 50000,
+      "id": 31
+    },
+    {
+      "name": "From Bharatia",
+      "type": "income",
+      "amount": 30000,
+      "id": 32
+    },
+    {
+      "name": "Pen",
+      "type": "expense",
+      "amount": 300,
+      "id": 33
     }
   ]
 }

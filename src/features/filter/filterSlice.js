@@ -19,12 +19,14 @@ const filterSlice = createSlice({
     },
     pagination: (state, action) => {
       state.search = "";
-      state.start = action.payload.start;
       state.type = "all";
+      state.start = action.payload.start;
       state.end = action.payload.end;
     },
     filterType: (state, action) => {
       state.type = action.payload;
+      state.start = 0;
+      state.end = 10;
     },
   },
 });

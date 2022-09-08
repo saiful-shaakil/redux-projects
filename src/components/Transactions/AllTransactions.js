@@ -8,14 +8,14 @@ import Search from "../Search";
 import { fireEvent } from "@testing-library/react";
 import { filterType } from "../../features/filter/filterSlice";
 export default function AllTransactions() {
-  const { transactions, isLoading, isError, error } = useSelector(
+  const { transactions, update, isLoading } = useSelector(
     (state) => state.transaction
   );
   const dispatch = useDispatch();
   const { search, start, end, type } = useSelector((state) => state.filter);
   useEffect(() => {
     dispatch(fetchTransactions({ search, start, end, type }));
-  }, [dispatch, search, start, end, type]);
+  }, [dispatch, search, start, end, type, update]);
   //   to filter by type
   const handleType = (value) => {
     dispatch(filterType(value));

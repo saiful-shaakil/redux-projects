@@ -1,6 +1,6 @@
 ## Expense Tracker Application
 
-[Go to Live Site]()
+[Go to Live Site](https://expense-tracker-ss.netlify.app/)
 
 Please follow the below instructions to run this branch in your machine:
 

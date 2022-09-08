@@ -9,16 +9,22 @@ import { pagination } from "../../features/filter/filterSlice";
 
 export default function Transactions() {
   const match = useMatch("/");
-  const { transactions, isLoading } = useSelector((state) => state.transaction);
+  const { transactions, isLoading, update } = useSelector(
+    (state) => state.transaction
+  );
   const { search, start, end, type } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
   if (match) {
     dispatch(pagination({ start: 0, end: 5 }));
   }
+
   // useEffect
   useEffect(() => {
     dispatch(fetchTransactions({ search, start, end, type }));
-  }, [dispatch, start, end, search, type]);
+  }, [dispatch, start, end, search, type, update]);
+  if (isLoading) {
+    return "Loading....";
+  }
   return (
     <>
       <p className="second_heading">Your Transactions:</p>
@@ -35,7 +41,7 @@ export default function Transactions() {
             to="/transactions"
             className="show_button"
           >
-            Show More
+            View All
           </Link>
         </div>
       </div>
