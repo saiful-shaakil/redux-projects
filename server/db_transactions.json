@@ -2,7 +2,7 @@
   "transactions": [
     {
       "name": "Salary from Facebook",
-      "amount": 1000000,
+      "amount": 100000,
       "type": "income",
       "id": 1
     },
@@ -14,9 +14,27 @@
     },
     {
       "name": "From Fiverr",
-      "amount": "20000",
+      "amount": 2000,
       "type": "income",
       "id": 3
+    },
+    {
+      "name": "Test",
+      "amount": 223,
+      "type": "income",
+      "id": 4
+    },
+    {
+      "name": "From Upwork",
+      "type": "income",
+      "amount": 12887,
+      "id": 5
+    },
+    {
+      "name": "From Freelacing",
+      "type": "income",
+      "amount": 288888,
+      "id": 6
     }
   ]
 }
