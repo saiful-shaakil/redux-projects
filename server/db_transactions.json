@@ -8,33 +8,69 @@
     },
     {
       "name": "Family Expenses",
-      "amount": 200000,
+      "amount": 20000,
       "type": "expense",
       "id": 2
-    },
-    {
-      "name": "From Fiverr",
-      "amount": 2000,
-      "type": "income",
-      "id": 3
-    },
-    {
-      "name": "Test",
-      "amount": 223,
-      "type": "income",
-      "id": 4
-    },
-    {
-      "name": "From Upwork",
-      "type": "income",
-      "amount": 12887,
-      "id": 5
     },
     {
       "name": "From Freelacing",
       "type": "income",
       "amount": 288888,
       "id": 6
+    },
+    {
+      "name": "Keyboard",
+      "amount": 3000,
+      "type": "expense",
+      "id": 7
+    },
+    {
+      "name": "Keyboard",
+      "type": "expense",
+      "amount": 333,
+      "id": 10
+    },
+    {
+      "name": "Logi Mouse",
+      "type": "expense",
+      "amount": 1299,
+      "id": 11
+    },
+    {
+      "name": "Logi Keyboard",
+      "type": "expense",
+      "amount": 2499,
+      "id": 12
+    },
+    {
+      "name": "Income from ammu",
+      "type": "income",
+      "amount": 3000,
+      "id": 13
+    },
+    {
+      "name": "Income from abbu",
+      "type": "income",
+      "amount": 2000,
+      "id": 14
+    },
+    {
+      "name": "Mobile Bill",
+      "type": "expense",
+      "amount": 300,
+      "id": 15
+    },
+    {
+      "name": "Wifi Bill",
+      "type": "expense",
+      "amount": 500,
+      "id": 16
+    },
+    {
+      "name": "Current Bill",
+      "type": "expense",
+      "amount": 3400,
+      "id": 17
     }
   ]
 }

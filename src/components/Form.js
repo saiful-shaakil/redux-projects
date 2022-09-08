@@ -36,7 +36,10 @@ export default function Form() {
   };
   const cancelEdit = () => {
     setEditMode(false);
-    dispatch(editInactive());
+    dispatch(editInactive({}));
+    setAmount("");
+    setType("");
+    setName("");
   };
   // to update
   const handleUpdate = (e) => {
@@ -112,14 +115,18 @@ export default function Form() {
           />
         </div>
 
-        <button disabled={isLoading} type="submit" className="btn">
+        <button
+          disabled={isLoading}
+          type="submit"
+          className="btn_custom bg-blue-900"
+        >
           {editMode ? "Update" : "Add"} Transaction
         </button>
         {!isLoading && isError && <p className="error">{error}</p>}
       </form>
 
       {editMode && (
-        <button onClick={cancelEdit} className="btn cancel_edit">
+        <button onClick={cancelEdit} className="btn_custom cancel_edit">
           Cancel Edit
         </button>
       )}

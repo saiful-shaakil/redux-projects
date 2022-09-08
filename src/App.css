@@ -73,14 +73,14 @@
 }
 
 .radio {
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 input {
   padding: 5px 10px;
 }
 
-.btn {
+.btn_custom {
   width: 100%;
   border: none;
   outline: none;
@@ -91,7 +91,7 @@ input {
   transition: background-color 0.3s ease;
 }
 
-.btn:hover {
+.btn_custom:hover {
   background-color: #094d3d;
 }
 
@@ -222,4 +222,21 @@ label {
   * {
     font-size: 95% !important;
   }
+}
+.show_button_div {
+  text-align: right;
+}
+.show_button {
+  padding: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: blue;
+  border: none;
+  cursor: pointer;
+}
+.transactions_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }

@@ -17,8 +17,8 @@ const initialState = {
 // asyns thunks
 export const fetchTransactions = createAsyncThunk(
   "transaction/fetchTransactions",
-  async () => {
-    const transactions = await getTransactions();
+  async ({ search, start, end, type }) => {
+    const transactions = await getTransactions(search, start, end, type);
     return transactions;
   }
 );
@@ -52,7 +52,7 @@ const transactionSlice = createSlice({
       state.editing = action.payload;
     },
     editInactive: (state, action) => {
-      state.editing = {};
+      state.editing = action.payload;
     },
   },
   extraReducers: (builder) => {

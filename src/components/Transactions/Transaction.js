@@ -2,6 +2,7 @@ import deleteImage from "../../assets/images/delete.svg";
 import editImage from "../../assets/images/edit.svg";
 import "../../App.css";
 import { useDispatch } from "react-redux";
+import { useMatch, useNavigate } from "react-router-dom";
 import {
   editActice,
   removeTransaction,
@@ -9,8 +10,13 @@ import {
 
 export default function Transaction({ each }) {
   const { id, name, type, amount } = each;
+  const match = useMatch("/");
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleEdit = () => {
+    if (!match) {
+      navigate("/");
+    }
     dispatch(editActice(each));
   };
   const handleDelete = () => {
