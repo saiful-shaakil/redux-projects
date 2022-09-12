@@ -5,6 +5,8 @@
 2. todo-app
 3. video-app
 4. expense-tracker
+5.video-app-with-rtk-query
+6.chat-app
 
 Please follow the below instructions to run any branch in your machine:
 
