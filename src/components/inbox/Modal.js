@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { conversationsApi } from "../../features/conversation/conversationAPI";
+import {
+  conversationsApi,
+  useAddConversationMutation,
+  useEditConversationMutation,
+} from "../../features/conversation/conversationAPI";
 import { useGetUserQuery } from "../../features/users/usersAPI";
 import isValidEmail from "../../utils/isValidEmail";
 import Error from "../ui/Error";
@@ -18,6 +22,11 @@ export default function Modal({ open, control }) {
   const { data: participant } = useGetUserQuery(to, {
     skip: !userCheck,
   });
+
+  const [addConversation, { isSuccess: isAddConversationSuccess }] =
+    useAddConversationMutation();
+  const [editConversation, { isSuccess: isEditConversationSuccess }] =
+    useEditConversationMutation();
 
   useEffect(() => {
     if (participant?.length > 0 && participant[0].email !== myEmail) {
@@ -37,7 +46,16 @@ export default function Modal({ open, control }) {
         });
     }
   }, [participant, dispatch, myEmail, to]);
-  const debounceEmail = (fn, delay) => {
+
+  // listen conversation add/edit success
+  useEffect(() => {
+    if (isAddConversationSuccess || isEditConversationSuccess) {
+      control();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAddConversationSuccess, isEditConversationSuccess]);
+
+  const debounceHandler = (fn, delay) => {
     let timeoutId;
     return (...args) => {
       clearTimeout(timeoutId);
@@ -46,19 +64,46 @@ export default function Modal({ open, control }) {
       }, delay);
     };
   };
+
   const doSearch = (value) => {
     if (isValidEmail(value)) {
+      // check user API
       setUserCheck(true);
       setTo(value);
     }
   };
-  const handleSearch = debounceEmail(doSearch, 500);
 
-  //   to submit the form
+  const handleSearch = debounceHandler(doSearch, 500);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+
+    if (conversation?.length > 0) {
+      // edit conversation
+      editConversation({
+        id: conversation[0].id,
+        sender: myEmail,
+        data: {
+          participants: `${myEmail}-${participant[0].email}`,
+          users: [loggedInUser, participant[0]],
+          message,
+          timestamp: new Date().getTime(),
+        },
+      });
+    } else if (conversation?.length === 0) {
+      // add conversation
+      addConversation({
+        sender: myEmail,
+        data: {
+          participants: `${myEmail}-${participant[0].email}`,
+          users: [loggedInUser, participant[0]],
+          message,
+          timestamp: new Date().getTime(),
+        },
+      });
+    }
   };
+
   return (
     open && (
       <>
@@ -117,11 +162,13 @@ export default function Modal({ open, control }) {
             </div>
 
             {participant?.length === 0 && (
-              <Error message="This user doesn't exist!" />
+              <Error message="This user does not exist!" />
             )}
             {participant?.length > 0 && participant[0].email === myEmail && (
               <Error message="You can not send message to yourself!" />
             )}
+
+            {responseError && <Error message={responseError} />}
           </form>
         </div>
       </>
