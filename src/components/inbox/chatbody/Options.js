@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useEditConversationMutation } from "../../../features/conversation/conversationAPI";
+import { useEditConversationMutation } from "../../../features/conversation/conversationsApi";
 
 export default function Options({ info }) {
   const [message, setMessage] = useState("");

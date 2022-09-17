@@ -4,7 +4,7 @@ import {
   conversationsApi,
   useAddConversationMutation,
   useEditConversationMutation,
-} from "../../features/conversation/conversationAPI";
+} from "../../features/conversation/conversationsApi";
 import { useGetUserQuery } from "../../features/users/usersAPI";
 import isValidEmail from "../../utils/isValidEmail";
 import Error from "../ui/Error";
