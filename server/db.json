@@ -19,12 +19,6 @@
       "id": 3
     },
     {
-      "email": "shakil@gmail.com",
-      "password": "$2a$10$2KwPeBQxd1RcBTC97YYfMeMIxGJ69prqoP6z3V8XPvOYYUmW7taWe",
-      "name": "Shakil",
-      "id": 4
-    },
-    {
       "email": "test@gmail.com",
       "password": "$2a$10$GUMKG2fLEKhNAPS/rXMH2uugzjMUefNxKw.0bXeu2EhoSnc6pp0uO",
       "name": "test",
